@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>*{
+      margin: 0;
+      padding: 0;
+    }
+     #runbo{ margin: 200px auto;text-align: center;
+    background-color: rgb(235, 215, 215);}
+    #outer{ margin: 200px auto;text-align: center;
+    background-color: rgb(232, 214, 214);}
+       img{height:600px; width: 800px;}
+    .b1{position: absolute;right: 850px;top: 700px;}
+    .b2{position: absolute;right: 750px;top: 700px;}
+    #runbok{height: 50px;width: 100px;background-color: #bfa;position: absolute;top: 950px;left: 500px;}
+    #runbog{height: 50px;width: 100px;background-color: rgb(200, 23, 147);position: absolute;top: 950px;left: 800px;}
+</style>
+    <script>
+    window.onload = function () {
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
+  var img = document.getElementById("imgs");
+  var info=document.getElementById("info");
+  var imgArr = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", ];
+  var index = 0;
+  info.innerHTML = "一共" + imgArr.length + "张图片， 这是第" + (index + 1) + "张"; 
+  prev.onclick = function () { 
+    index--
+    if (index<0) {
+      index=imgArr.length-1;
+    }
+    img.src =  imgArr[index]; 
+    info.innerHTML = "一共" + imgArr.length + "张图片， 这是第" + (index + 1) + "张"; 
+  };
+ next.onclick = function () {
+  index++
+  if (index>imgArr.length-1) {
+    index=0;
+    }
+    img.src =  imgArr[index];
+    info.innerHTML = "一共" + imgArr.length + "张图片， 这是第" + (index + 1) + "张"; 
+  };
+  //  轮播图代码  下方           ！！！！！！！！！！！！！！！！！！！！！！！！！
+    var imgArr = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", ];
+    var runboimg=document.getElementById("runboimg")
+    var index=0
+var runbok = document.getElementById("runbok");
+var runbog = document.getElementById("runbog");
+var timer//   清除定时器，可以写在定时器上面 但是上面要提前声名   var timer   不然就会报错， 往下就不执行了
+runbok.onclick=function(){
+    clearInterval(timer)//防止用户再点击onclick   又产生一个定时器  ，  这里是用户再点击onclick  关闭上一个定时器
+    timer=setInterval(function () {
+        if (index>imgArr.length-1) {
+                index=0;
+       }
+    runboimg.src =  imgArr[index++];
+        }, 1000);
+    }
+     runbog.onclick=function(){
+         clearInterval(timer);
+        }
+  
+};</script>
+
+  </head>
+  <body>
+    <div id="outer"> 
+      <p id="info"></p>
+        <img src="1.jpg" alt="冰棍" id="imgs"/></div>
+        <button id="prev" class="b1">上一张</button>
+        <button id="next" class="b2">下一张</button>
+    </div>
+    <div id="runbo"><img src="1.jpg" alt="冰棍" id="runboimg"/></div>
+<button id="runbok">轮播图开</button>
+<button id="runbog">轮播图关</button>
+     
+    </body>
+</html>
